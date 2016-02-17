@@ -2,10 +2,10 @@
 
 Automated install of Solr5 onto Ubuntu using Vagrant and Ansible
 
-# Pre-requisites 
+## Pre-requisites 
 Vagrant + Ubuntu box: hashicorp/precise64
 
-# How it works
+## How it works
 1. Builds a VM using Vagrant 
 2. Then pushes vagrant_share folder sync into the /vagrant
 3. Runs the provision-ubuntu.sh script to install ansible 2.0 and dependencies
