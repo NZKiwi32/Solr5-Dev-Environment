@@ -13,3 +13,6 @@ Vagrant + Ubuntu box: hashicorp/precise64
 5. Runs Solr5
 
 \* used because ansible on windows is a pain so removes this issue.
+
+## How to use it
+After installing vagrant, all you need is `vagrant up`
