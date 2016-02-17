@@ -1,0 +1,44 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+VAGRANTFILE_API_VERSION = "2"
+host_machinedomain = "#{`hostname`[0..-2]}"
+
+# Require YAML module
+require 'yaml'
+
+# Read YAML file with box details
+servers = YAML.load_file('servers.yml')
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+  # Every Vagrant development environment requires a box. You can search for
+  # boxes at https://atlas.hashicorp.com/search.
+  config.vm.box = "hashicorp/precise64"
+
+  config.vm.provider "virtualbox" do |vb|
+    # Display the VirtualBox GUI when booting the machine
+    #vb.gui = true
+    vb.memory = 2048
+    vb.cpus = 2
+  end
+
+  # Share an additional folder to the guest VM. 
+  config.vm.synced_folder "../vagrant_share", "/vagrant/", mount_options: ["fmode=666"]
+
+  servers.each do |server|
+    config.vm.define server["name"] do |srv|
+      # Create a forwarded port mapping which allows access to a specific port
+      # within the machine from a port on the host machine. In the example below,
+      # accessing "localhost:8080" will access port 80 on the guest machine.
+      srv.vm.network "forwarded_port", guest: server["httpd_port_guest"], host: server["httpd_post_host"]
+      srv.vm.network "forwarded_port", guest: server["mysql_port_guest"], host: server["mysql_port_host"]
+
+      # To allow running from windows we provision with shell not ansible directly
+      # This allows the shell to yum update, install ansible then run the playbook OS independently.
+      srv.vm.provision "shell" do |s|
+        s.path = "provision-ubuntu.sh"
+        s.args = [host_machinedomain, server["httpd_post_host"]]
+      end
+    end
+  end
+
+end

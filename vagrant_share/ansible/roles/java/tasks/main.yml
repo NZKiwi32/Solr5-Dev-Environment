@@ -1,0 +1,12 @@
+---
+- name: Update APT package cache
+  apt: update_cache=yes cache_valid_time=3600
+
+- name: install java jdk
+  apt: name=openjdk-7-jdk state=present
+
+- name: mkdir /usr/java
+  file: path=/usr/java state=directory
+
+- name: create sym link
+  file: src=/usr/lib/jvm/java-7-openjdk-amd64 dest=/usr/java/default state=link

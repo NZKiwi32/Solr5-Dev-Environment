@@ -1,0 +1,6 @@
+---
+- name: default
+  httpd_port_guest: 80
+  httpd_post_host: 8080
+  mysql_port_guest: 3306
+  mysql_port_host: 3307

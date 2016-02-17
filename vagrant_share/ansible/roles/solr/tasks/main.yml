@@ -1,0 +1,60 @@
+---
+- name: creating vars to Solr URL and file
+  set_fact:
+    solr_file: "solr-{{ solr_version }}.tgz"
+    solr_url: "{{ solr_path }}/{{ solr_version }}/solr-{{ solr_version }}.tgz"
+    solr_example_path: "/opt/solr-{{ solr_version }}/example"
+
+- name: get solr
+  get_url: url={{ solr_url }} dest=/opt/{{ solr_file }}
+
+- name: unzip solr
+  unarchive: src=/opt/{{ solr_file }} dest=/opt/ copy=no
+
+- name: stat example folder
+  stat: path={{ solr_example_path }}
+  register: st_example
+
+- name: delete solr folder if exists
+  file: path=/opt/solr state=absent
+  when: st_example.stat.exists
+
+- name: move example folder
+  command: "mv {{ solr_example_path }} /opt/solr"
+  when: st_example.stat.exists
+
+- name: copy jetty file
+  copy: src=jetty dest=/etc/default/
+
+- name: copy jetty-logging.xml file
+  copy: src=jetty-logging.xml dest=/opt/solr/etc/jetty-logging.xml
+
+- name: create solr user
+  user: name=solr home=/opt/solr shell=/sbin/false state=present
+  sudo: true
+
+- name: chown solr user
+  file: path=/opt/solr group=solr owner=solr recurse=yes
+  sudo: true
+
+- name: get the jetty-servlets jar to enable CORS..
+  get_url: url=http://repo1.maven.org/maven2/org/eclipse/jetty/jetty-servlets/8.1.10.v20130312/jetty-servlets-8.1.10.v20130312.jar dest=/opt/solr/lib mode=755
+  when: enable_cors
+  tags: enable_cors
+
+- name: copy webdefault.xml file..
+  copy: src=webdefault.xml dest=/opt/solr/etc
+  when: enable_cors
+  tags: enable_cors
+
+- name: get jetty startup script
+  get_url: url=http://git.eclipse.org/c/jetty/org.eclipse.jetty.project.git/plain/jetty-distribution/src/main/resources/bin/jetty.sh dest=/etc/init.d/jetty mode=755
+
+- name: get jetty start.ini file
+  get_url: url=http://git.eclipse.org/c/jetty/org.eclipse.jetty.project.git/plain/jetty-distribution/src/main/resources/start.ini dest=/opt/solr/start.ini mode=755
+
+- name: add jetty as a startup service
+  command: update-rc.d jetty defaults
+  sudo: true
+  notify:
+    - start jetty
