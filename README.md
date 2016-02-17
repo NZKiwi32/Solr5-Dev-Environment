@@ -12,4 +12,4 @@ Vagrant + Ubuntu box: hashicorp/precise64
 4. Executes the playbook (in ansible_connection=local mode*) to provision solr and dependencies.
 5. Runs Solr5
 
-* used because ansible on windows is a pain so removes this issue.
+\* used because ansible on windows is a pain so removes this issue.
