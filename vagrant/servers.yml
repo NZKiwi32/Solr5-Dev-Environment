@@ -1,5 +1,7 @@
 ---
 - name: default
+  solr_port_guest: 8983
+  solr_post_host: 8983
   httpd_port_guest: 80
   httpd_post_host: 8080
   mysql_port_guest: 3306
