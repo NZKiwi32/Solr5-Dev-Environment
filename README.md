@@ -3,7 +3,7 @@
 Automated install of Solr5 onto Ubuntu using Vagrant virtual machine management and Ansible Playbooks for provisioning.
 
 ## Pre-requisites 
-[Vagrant](https://www.vagrantup.com/)
+* [Vagrant](https://www.vagrantup.com/)
 
 ## How to use it
 1. Install vagrant
