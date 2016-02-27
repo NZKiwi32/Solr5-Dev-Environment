@@ -5,6 +5,14 @@ Automated install of Solr5 onto Ubuntu using Vagrant and Ansible
 ## Pre-requisites 
 Vagrant + Ubuntu box: hashicorp/precise64 (automatically obtained)
 
+## How to use it
+1. Install vagrant
+2. Checkout repo
+3. cd into vagrant folder
+4. run `vagrant up`
+5. Wait until playbook finishes: Play Recap
+6. Access solr via localhost:8983/solr
+
 ## Details
 Port forwarding from host to guest of port 8983 for default solr port.
 
@@ -17,10 +25,4 @@ Port forwarding from host to guest of port 8983 for default solr port.
 
 \* used because ansible on windows is a pain so removes this issue.
 
-## How to use it
-1. Install vagrant
-2. Checkout repo
-3. cd into vagrant folder
-4. run `vagrant up`
-5. Wait until playbook finishes: Play Recap
-6. Access solr via localhost:8983/solr
+
