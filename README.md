@@ -1,6 +1,6 @@
 # Solr5 Environment Ansible-Vagrant
 
-Automated install of Solr5 onto Ubuntu using Vagrant and Ansible
+Automated install of Solr5 onto Ubuntu using Vagrant virtual machine management and Ansible Playbooks for provisioning.
 
 ## Pre-requisites 
 Vagrant + Ubuntu box: hashicorp/precise64 (automatically obtained)
