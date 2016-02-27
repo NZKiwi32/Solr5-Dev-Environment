@@ -29,9 +29,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       # Create a forwarded port mapping which allows access to a specific port
       # within the machine from a port on the host machine. In the example below,
       # accessing "localhost:8080" will access port 80 on the guest machine.
-      srv.vm.network "forwarded_port", guest: server["httpd_port_guest"], host: server["httpd_post_host"]
+      # srv.vm.network "forwarded_port", guest: server["httpd_port_guest"], host: server["httpd_post_host"]
       srv.vm.network "forwarded_port", guest: server["solr_port_guest"], host: server["solr_post_host"]
-      srv.vm.network "forwarded_port", guest: server["mysql_port_guest"], host: server["mysql_port_host"]
+      # srv.vm.network "forwarded_port", guest: server["mysql_port_guest"], host: server["mysql_port_host"]
 
       # To allow running from windows we provision with shell not ansible directly
       # This allows the shell to yum update, install ansible then run the playbook OS independently.

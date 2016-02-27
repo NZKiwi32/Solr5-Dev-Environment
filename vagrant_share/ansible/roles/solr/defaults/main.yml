@@ -1,3 +1,7 @@
 solr_path: http://archive.apache.org/dist/lucene/solr/
-solr_version: 4.9.1
+solr_version: 5.5.0
+solr_home_location: /opt
 enable_cors: true
+solr_user: solr
+solr_port: 8983
+solr_tgz: "{{ solr_home_location }}/{{ solr_file }}"
