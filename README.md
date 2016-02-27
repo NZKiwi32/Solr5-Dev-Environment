@@ -9,7 +9,7 @@ Automated install of Solr5 onto Ubuntu using Vagrant virtual machine management 
 1. Install vagrant
 2. Checkout repo
 3. cd into vagrant folder
-4. run `vagrant up`
+4. run [`vagrant up`](https://www.vagrantup.com/docs/cli/up.html)
 5. Wait until playbook finishes: Play Recap
 6. Access solr via localhost:8983/solr
 
