@@ -1,4 +1,4 @@
-# ansible-vagrant-Solr5
+# Ansible-Vagrant-Solr5 Environment
 
 Automated install of Solr5 onto Ubuntu using Vagrant and Ansible
 
