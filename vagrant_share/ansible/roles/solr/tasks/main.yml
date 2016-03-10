@@ -10,6 +10,13 @@
 - name: unzip solr
   unarchive: src={{ solr_tgz }} dest={{ solr_home_location }}/ copy=no
 
+  #start solr and create index
+# root@precise64:/var/solr-5.5.0# history
+#     1  ll /var/solr-5.5.0
+#     2  cd /var/solr-5.5.0/
+#     3  bin/solr start
+#     4  bin/solr create -c test
+#     5  history
 # - name: delete solr folder if exists
 #   file: path={{ solr_home_location }}/solr state=absent
 
@@ -19,10 +26,19 @@
 # - name: chown solr user
 #   file: path={{ solr_home_location }}/solr group={{solr_user}} owner={{solr_user}} recurse=yes
 
-- name: Install solr
-  command: creates=/etc/init.d/solr {{ solr_home_location }}/solr-{{ solr_version }}/bin/install_solr_service.sh {{ solr_tgz }} -d /var/solr/ -p {{ solr_port }} -s solr -u {{ solr_user }}
+# - name: Install solr
+#   command: creates=/etc/init.d/solr {{ solr_home_location }}/solr-{{ solr_version }}/bin/install_solr_service.sh {{ solr_tgz }} -d /var/solr/ -p {{ solr_port }} -s solr -u {{ solr_user }}
 
+# - name: Start the Solr service
+#   service: name=solr state=restarted
+#   sudo: True
 
-- name: Start the Solr service
-  service: name=solr state=restarted
-  sudo: True
+# - name: chown solr user - opt
+#   file: path={{ solr_home_location }}/solr-{{ solr_version }} group={{solr_user}} owner={{solr_user}} recurse=yes mode=u+rwx
+
+# - name: chown solr user - var
+#   file: path=/var/solr group={{solr_user}} owner={{solr_user}} recurse=yes mode=u+rwx
+
+# - name: Create solr core
+#   command: chdir=/opt/solr/bin ./solr create -c tagcms
+  #http://localhost:8983/solr/admin/cores?action=CREATE&name=test1&instanceDir=test1

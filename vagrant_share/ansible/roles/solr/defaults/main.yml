@@ -1,6 +1,6 @@
 solr_path: http://archive.apache.org/dist/lucene/solr/
 solr_version: 5.5.0
-solr_home_location: /opt
+solr_home_location: /var
 enable_cors: true
 solr_user: solr
 solr_port: 8983
