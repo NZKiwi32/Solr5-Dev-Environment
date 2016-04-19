@@ -1,4 +1,4 @@
-# Solr5 Environment Ansible-Vagrant
+# Local Solr5 Development Environment 
 
 Automated install of Solr5 onto Ubuntu using Vagrant virtual machine management and Ansible Playbooks for provisioning.
 
@@ -12,6 +12,10 @@ Automated install of Solr5 onto Ubuntu using Vagrant virtual machine management 
 4. run [`vagrant up`](https://www.vagrantup.com/docs/cli/up.html)
 5. Wait until playbook finishes: Play Recap
 6. Access solr via localhost:8983/solr
+
+## Installed Software
+Java7
+Solr5.X
 
 ## How it works
 1. Builds a Ubuntu virtual machine using image hashicorp/precise64 using Vagrant 
