@@ -13,9 +13,6 @@ Automated install of Solr5 onto Ubuntu using Vagrant virtual machine management 
 5. Wait until playbook finishes: Play Recap
 6. Access solr via localhost:8983/solr
 
-## Details
-Port forwarding from host to guest of port 8983 for default solr port.
-
 ## How it works
 1. Builds a Ubuntu virtual machine using image hashicorp/precise64 using Vagrant 
 2. Then pushes vagrant_share folder sync into the /vagrant
@@ -24,4 +21,7 @@ Port forwarding from host to guest of port 8983 for default solr port.
 5. Runs Solr
 6. Creates Core using configured name
 
-
+## Environment Setup Time
+First provision (`vagrant up`) takes ~5-10 minutes*.
+Re-Provisioning (`vagrant provision`) back to clear state is ~1 minute.
+* Download times vary dependending on your connection
