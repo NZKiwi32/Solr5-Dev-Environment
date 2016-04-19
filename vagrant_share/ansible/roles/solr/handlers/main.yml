@@ -1,3 +1,5 @@
-- name: start jetty
-  command: /etc/init.d/jetty start
+- name: restart solr
+  command: bin/solr restart
+  args:
+    chdir: "{{ solr_home }}"
   sudo: true
