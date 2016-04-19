@@ -22,6 +22,6 @@ Port forwarding from host to guest of port 8983 for default solr port.
 3. Runs the provision-ubuntu.sh script to install ansible 2.0 and dependencies
 4. Executes the playbook (in ansible_connection=local mode) to provision solr and dependencies.
 5. Runs Solr
-
+6. Creates Core using configured name
 
 
