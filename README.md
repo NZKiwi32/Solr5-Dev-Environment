@@ -5,6 +5,11 @@ Automated install of Solr5 onto Ubuntu using Vagrant virtual machine management 
 ## Pre-requisites 
 * [Vagrant](https://www.vagrantup.com/)
 
+## Use cases / Target Audience
+This machine is useful to experiment with solr5 in a local development environment for prototyping or exploring if solr works for you. Access via: [http://localhost:8983/solr/#/]([http://localhost:8983/solr/#/])
+
+Disclaimer: It's not intended to be production ready
+
 ## How to use it
 1. Install vagrant
 2. Checkout repo
