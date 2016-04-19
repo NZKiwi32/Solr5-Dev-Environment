@@ -12,7 +12,7 @@
 
 - name: force start solr
   command: /bin/true
-  notify: start solr
+  notify: restart solr
 - meta: flush_handlers
 
 - name: create index
